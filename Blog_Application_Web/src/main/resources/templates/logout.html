@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/logout.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <title>Logout</title>
+</head>
+
+<body>
+    <header>
+
+    </header>
+    <div class="mainContainer">
+        <div class="subContainer">
+            <div class="yes">
+            <a href="/loginPage"><button class="yesBtn">Yes</button></a>
+            </div>
+            <div class="goback">
+                 <a th:href="@{/home(pageNumber=${session.pageNumber-1}, pageSize=${session.pageSize}, sortBy=${session.sortBy})}"> <button class="gobackBtn">Go Back</button></a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: rgb(210, 210, 180);
+}
+.mainContainer{
+    height: 40vh;
+    width: 40vw;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #010536;
+    border-radius: 0 20px 10px 30px;
+    box-shadow: 5px 5px 15px yellow;
+    
+}
+.subContainer{
+    height: 50%;
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.yes{
+    height: 30%;
+    width: 30%;
+    
+}
+.yesBtn{
+    height: 100%;
+    width: 100%;
+    font-size: 20px;
+    background-color: yellow;
+    color: #010536;
+    border-radius: 10px;
+     font-family: "Montserrat", sans-serif;
+}
+.goback{
+    height: 30%;
+    width: 30%;
+}
+.gobackBtn{
+    height: 100%;
+    width: 100%;
+    font-size: 20px;
+    background-color: yellow;
+    color: #010536;
+    border-radius: 10px;
+     font-family: "Montserrat", sans-serif;
+}

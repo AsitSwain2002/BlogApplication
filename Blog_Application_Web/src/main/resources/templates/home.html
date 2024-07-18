@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Home</title>
+	<link rel="stylesheet" th:href="@{/css/home.css}" />
+</head>
+
+<body>
+	<!-- If user is logged in -->
+	<div th:if="${session.sessionUser != null}">
+		<header>
+			<nav>
+				<div class="logo">
+					<img alt="Logo" th:src="@{/img/blogspotter-high-resolution-logo (1).png}" />
+				</div>
+				<div class="selectContainer">
+					<select id="dropdown">
+						<option>Select</option>
+						<option th:value="@{/addPostPage}">Create Post</option>
+						<option value="option2">Profile</option>
+						<option th:value="@{/addCatagory}">Add Catagory</option>
+						<option th:value="@{/logoutPage}">LogOut</option>
+					</select>
+				</div>
+				<div class="user">
+					<img alt="User Image" th:src="@{/img/artistic-noir-suit-design_772298-7598.avif}" />
+					<div class="name" th:text="${session.sessionUser.getName()}"></div>
+				</div>
+			</nav>
+		</header>
+		<main>
+			<div class="subHead">
+			<div class="catagory">Technology</div>
+			<div class="catagory">Health</div>
+			<div class="catagory">Lifestyle</div>
+			<div class="catagory">Business</div>
+			<div class="catagory">Food & Recipes</div>
+			<div class="catagory">Travel</div>
+			<div class="catagory">Education</div>
+			<div class="catagory">Entertainment</div>
+			<div class="catagory">Sports</div>
+			<div class="catagory">Pet</div>
+		</div>
+			<div class="searchBox">
+				<form action="/search">
+					<input type="search" name="search" class="search" placeholder="Enter Keyword" required>
+					<input type="submit" value="Search" class="searchBtn">
+				</form>
+			</div>
+			<div class="mainPostcontainer">
+				<div class="post" th:each="n : ${session.sessionListPostHttpSession}">
+					<a th:href="@{/postPage(id=${n.getId()})}">
+						<div class="image">
+							<img alt="Post Image" class="inImg" />
+						</div>
+						<div class="title" th:text="${n.getTitle()}"></div>
+					</a>
+				</div>
+			</div>
+			<div class="next" th:if="${session.sessionListPostHttpSession != null}">
+				<a
+					th:href="@{/back(pageNumber=${session.count-1}, pageSize=${session.pageSize}, sortBy=${session.sortBy})}">
+
+					<button class="backBtn">Back</button>
+				</a>
+				<a
+					th:href="@{/home(pageNumber=${session.count+1}, pageSize=${session.pageSize}, sortBy=${session.sortBy})}">
+					<button class="btn">Next</button>
+				</a>
+			</div>
+		</main>
+		<script>
+			document.getElementById('dropdown').addEventListener('change', function () {
+				var selectedValue = this.value;
+				if (selectedValue) {
+					window.location.href = selectedValue;
+				}
+			});
+		</script>
+	</div>
+	<!-- If user is not logged in -->
+	<div th:unless="${session.sessionUser != null}">
+		<script th:inline="javascript">
+			/*<![CDATA[*/
+			window.location.replace(/*[[@{/loginPage}]]*/);
+            /*]]>*/
+		</script>
+	</div>
+</body>
+
+</html>
