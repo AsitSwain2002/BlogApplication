@@ -1,5 +1,7 @@
 package com.Blog_Application_Web.Dto;
 
+import org.springframework.format.annotation.NumberFormat;
+
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -17,6 +19,7 @@ public class UserDto {
 	@NotNull
 	private int age;
 	@NotNull
+	@NumberFormat
 	private long mobile;
 	@Email
 	private String email;

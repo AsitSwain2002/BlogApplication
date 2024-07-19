@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Home</title>
 	<link rel="stylesheet" th:href="@{/css/home.css}" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
 </head>
 
 <body>
@@ -33,24 +34,26 @@
 		</header>
 		<main>
 			<div class="subHead">
-			<div class="catagory">Technology</div>
-			<div class="catagory">Health</div>
-			<div class="catagory">Lifestyle</div>
-			<div class="catagory">Business</div>
-			<div class="catagory">Food & Recipes</div>
-			<div class="catagory">Travel</div>
-			<div class="catagory">Education</div>
-			<div class="catagory">Entertainment</div>
-			<div class="catagory">Sports</div>
-			<div class="catagory">Pet</div>
-		</div>
+				<div class="catagory"><a href="/catagory?id=1">Technology</a></div>
+				<div class="catagory"><a href="/catagory?id=3">Health</a></div>
+				<div class="catagory"><a href="/catagory?id=2">Lifestyle</a></div>
+				<div class="catagory"><a href="/catagory?id=4">Business</a></div>
+				<div class="catagory"><a href="/catagory?id=5">Food & Recipes</a></div>
+				<div class="catagory"><a href="/catagory?id=6">Travel</a></div>
+				<div class="catagory"><a href="/catagory?id=7">Education</a></div>
+				<div class="catagory"><a href="/catagory?id=8">Entertainment</a></div>
+				<div class="catagory"><a href="/catagory?id=10">Sports</a></div>
+				<div class="catagory"><a href="/catagory?id=9">Pet</a></div>
+			</div>
+
+
 			<div class="searchBox">
 				<form action="/search">
 					<input type="search" name="search" class="search" placeholder="Enter Keyword" required>
 					<input type="submit" value="Search" class="searchBtn">
 				</form>
 			</div>
-			<div class="mainPostcontainer">
+			<div class="mainPostcontainer" th:if="${session.sessionListPostHttpSession != null}">
 				<div class="post" th:each="n : ${session.sessionListPostHttpSession}">
 					<a th:href="@{/postPage(id=${n.getId()})}">
 						<div class="image">
@@ -60,7 +63,7 @@
 					</a>
 				</div>
 			</div>
-			<div class="next" th:if="${session.sessionListPostHttpSession != null}">
+			<div class="next">
 				<a
 					th:href="@{/back(pageNumber=${session.count-1}, pageSize=${session.pageSize}, sortBy=${session.sortBy})}">
 

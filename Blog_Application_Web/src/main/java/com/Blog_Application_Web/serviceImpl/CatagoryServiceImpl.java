@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.Blog_Application_Web.Dto.CatagoryDto;
+import com.Blog_Application_Web.Dto.PostDto;
 import com.Blog_Application_Web.ExceptionHandler.ResourceNotFound;
 import com.Blog_Application_Web.Repo.CatagoryRepo;
 import com.Blog_Application_Web.entity.Catagory;
+import com.Blog_Application_Web.entity.Post;
 import com.Blog_Application_Web.service.CatagoryService;
 
 @Service
@@ -36,6 +38,11 @@ public class CatagoryServiceImpl implements CatagoryService{
 	public CatagoryDto findById(int id) {
 		Catagory catagory = catagoryRepo.findById(id).orElseThrow(() -> new ResourceNotFound("Catagory Not found"));
 		return modelMapper.map(catagory, CatagoryDto.class);
+	}
+	@Override
+	public List<PostDto> fetchPostByCatagory(int catagoryId) {
+		List<Post> posts = catagoryRepo.findPostByCatagoryId(catagoryId);
+		return posts.stream().map((e) -> modelMapper.map(e, PostDto.class)).collect(Collectors.toList());
 	}
 
 }

@@ -58,9 +58,7 @@ public class PostController {
 		ModelAndView modelAndView = new ModelAndView();
 		HttpSession session = request.getSession(false);
 		List<PostDto> allPosts = postService.allPOst(request, pageNumber, pageSize, sortBy);
-
 		modelAndView.addObject("sessionListPostHttpSession", allPosts);
-
 		session.setAttribute("sessionListPostHttpSession", allPosts);
 		Integer sessionCount = (Integer) session.getAttribute("count");
 		Integer countInc = sessionCount + 1;
@@ -101,7 +99,6 @@ public class PostController {
 	@GetMapping("/search")
 	public ModelAndView search(@RequestParam String search, HttpServletRequest req) {
 		ModelAndView modelAndView = new ModelAndView();
-		System.out.println("value :" + search);
 		HttpSession session = req.getSession(false);
 		List<PostDto> search1 = postService.search(search);
 		session.setAttribute("sessionListPostHttpSession", search1);

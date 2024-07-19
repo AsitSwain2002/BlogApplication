@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.Blog_Application_Web.Dto.PostDto;
 import com.Blog_Application_Web.Dto.UserDto;
@@ -34,7 +35,7 @@ public class UserServiceImpl implements UserService {
 	private PostService postService;
 
 	@Override
-	public ModelAndView saveUser(UserDto userDto) {
+	public RedirectView saveUser(UserDto userDto) {
 		ModelAndView mod = new ModelAndView();
 		User user = modelMapper.map(userDto, User.class);
 		user.setId(userDto.getId());
@@ -44,16 +45,15 @@ public class UserServiceImpl implements UserService {
 		user.setEmail(userDto.getEmail());
 		user.setPassword(userDto.getPassword());
 		userRepo.save(user);
-		mod.setViewName("register");
 		mod.addObject("success", "Registration Successful");
-		return mod;
+		return new RedirectView("registerPage");
 	}
 
 	@Override
 	public ModelAndView login(String email, String password, HttpSession session, HttpServletRequest req) {
 		ModelAndView modelAndView = new ModelAndView();
 		User user = userRepo.findByEmail(email);
-		if (user.getEmail().equals(email)) {
+		if (user != null) {
 			if (user.getPassword().equals(password)) {
 				session.setAttribute("sessionUser", user);
 				Integer pageNumber = PageValueSetting.pageNumber;

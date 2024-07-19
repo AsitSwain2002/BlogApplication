@@ -2,6 +2,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+     scrollbar-width: thin;
+    scrollbar-color: #010536 #f1f1f1;
 }
 
 header {
@@ -62,6 +64,8 @@ option{
     border: 1px solid yellow;
     display: flex;
     align-items: center;
+    border-bottom: none;
+    border-right: none;
 }
 
 .user img {
@@ -90,6 +94,9 @@ option{
     font-weight: 400;
     font-family: "Roboto", sans-serif;
     border-radius: 10px;
+}
+.catagory a{
+	text-decoration: none;
 }
 
 .catagory:hover {
@@ -165,7 +172,7 @@ main{
     height: 30%;
     width: 100%;
     border: 1px solid yellow;
-    padding: 10px 0 0 10px;
+    padding: 0 11px;
     font-size: 17px;
     font-weight: 700;
     letter-spacing: 0.05em;
@@ -173,6 +180,7 @@ main{
     background-color: #010536;
     display: flex;
    align-items: center;
+   font-family: "Ga Maamli", sans-serif;
 }
 .next{
 	height: 5vh;

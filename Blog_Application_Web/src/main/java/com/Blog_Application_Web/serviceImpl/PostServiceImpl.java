@@ -14,12 +14,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.Blog_Application_Web.Dto.CatagoryDto;
-import com.Blog_Application_Web.Dto.CommentDto;
 import com.Blog_Application_Web.Dto.PostDto;
 import com.Blog_Application_Web.Dto.UserDto;
 import com.Blog_Application_Web.ExceptionHandler.ResourceNotFound;
 import com.Blog_Application_Web.Repo.PostRepo;
-import com.Blog_Application_Web.Repo.UserRepo;
 import com.Blog_Application_Web.entity.Catagory;
 import com.Blog_Application_Web.entity.Post;
 import com.Blog_Application_Web.entity.User;
@@ -90,12 +88,12 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public List<PostDto> allPOst(HttpServletRequest req, Integer pageNumber, Integer pageSize, String sortBy) {
 		Pageable pageable = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy).descending());
-
+		HttpSession sessionListPostHttpSession = req.getSession(false);
 		Page<Post> findAll = postRepo.findAll(pageable);
 		List<Post> content = findAll.getContent();
 		List<PostDto> collect = content.stream().map((e) -> modelMapper.map(e, PostDto.class))
 				.collect(Collectors.toList());
-		HttpSession sessionListPostHttpSession = req.getSession(false);
+		
 		sessionListPostHttpSession.setAttribute("sessionListPostHttpSession", collect);
 		return collect;
 	}
