@@ -7,10 +7,10 @@
 	<title>Home</title>
 	<link rel="stylesheet" th:href="@{/css/home.css}" />
 	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
-	<!-- If user is logged in -->
 	<div th:if="${session.sessionUser != null}">
 		<header>
 			<nav>
@@ -22,12 +22,12 @@
 						<option>Select</option>
 						<option th:value="@{/addPostPage}">Create Post</option>
 						<option value="option2">Profile</option>
-						<option th:value="@{/addCatagory}">Add Catagory</option>
+						<option th:value="@{/addCatagory}" disabled>Add Catagory</option>
 						<option th:value="@{/logoutPage}">LogOut</option>
 					</select>
 				</div>
 				<div class="user">
-					<img alt="User Image" th:src="@{/img/artistic-noir-suit-design_772298-7598.avif}" />
+					<img alt="User Image" th:src="@{/img/images-removebg-preview.png}" />
 					<div class="name" th:text="${session.sessionUser.getName()}"></div>
 				</div>
 			</nav>
@@ -53,7 +53,7 @@
 					<input type="submit" value="Search" class="searchBtn">
 				</form>
 			</div>
-			<div class="mainPostcontainer" th:if="${session.sessionListPostHttpSession != null}">
+			<div class="mainPostcontainer">
 				<div class="post" th:each="n : ${session.sessionListPostHttpSession}">
 					<a th:href="@{/postPage(id=${n.getId()})}">
 						<div class="image">
@@ -65,13 +65,13 @@
 			</div>
 			<div class="next">
 				<a
-					th:href="@{/back(pageNumber=${session.count-1}, pageSize=${session.pageSize}, sortBy=${session.sortBy})}">
+					th:href="@{/back(pageNumber=${session.count}, pageSize=${session.pageSize}, sortBy=${session.sortBy})}">
 
-					<button class="backBtn">Back</button>
+					<button class="backBtn" th:if="${session.count > 0}">Back</button>
 				</a>
 				<a
-					th:href="@{/home(pageNumber=${session.count+1}, pageSize=${session.pageSize}, sortBy=${session.sortBy})}">
-					<button class="btn">Next</button>
+					th:href="@{/next(pageNumber=${session. count}, pageSize=${session.pageSize}, sortBy=${session.sortBy})}">
+					<button class="btn" th:if="${session.sessionListPostHttpSession.size() > 0}">Next</button>
 				</a>
 			</div>
 		</main>

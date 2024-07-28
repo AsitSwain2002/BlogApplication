@@ -1,0 +1,88 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+header{
+    height: 7vh;
+    width: 100vw;
+    background-color: #010536;
+}
+.mainContainer{
+
+    height: 70vh;
+    width: 70vw;
+    position: relative;
+    left: 50%;
+    transform: translate(-50% , 20%);
+}
+.sub1{
+    height: 50% ;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sub1 h1{
+    font-size: 14vw;
+    font-weight: 900;
+    font-family: "Anton", sans-serif;
+    background-image: url(https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjN8fHJhaW55JTIwbmF0dXJlfGVufDB8fDB8fHww) ;
+    background-size: cover;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+.sub2{
+    height: 50%;
+    width: 100%;
+    
+}
+.errorDetails{
+    height: 60%;
+    width: 100%;
+}
+.errerName{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30%;
+    width: 100%;
+    font-size: 1.3em;
+    font-family: "Anton", sans-serif;
+    font-weight: 900;
+}
+.details{
+    height: 40%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1em;
+}
+.content{
+   height: 100%;
+   width: 30%;
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, Arial, Helvetica, sans-serif;
+}
+.btnOuter{
+    height: 30%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn{
+    height: 100%;
+    width: 25%;
+    border-radius: 2em;
+    border: none;
+    background-color: #010536;
+    font-size: 1em;
+    font-family: "Anton", sans-serif;
+}
+.btn a{
+    color: yellow;
+    text-decoration: none;
+}

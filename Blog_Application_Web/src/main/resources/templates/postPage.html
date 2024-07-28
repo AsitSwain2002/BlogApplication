@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" th:href="@{/css/postPage.css}" />
 	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 	<title>Post</title>
 </head>
 
@@ -26,7 +28,7 @@
 					</select>
 				</div>
 				<div class="user">
-					<img alt="User Image" th:src="@{/img/artistic-noir-suit-design_772298-7598.avif}" />
+					<img alt="User Image" th:src="@{/img/images-removebg-preview.png}" />
 					<div class="name" th:text="${session.sessionUser.getName()}"></div>
 				</div>
 			</nav>
@@ -53,7 +55,18 @@
 							<img src="img/artistic-noir-suit-design_772298-7598.avif" alt="">
 						</div>
 						<div class="userName" th:text="${n.user.getName()}"></div>
-						<div class="date" th:text="${n.getDate()}">ago</div>
+						<div class="date" th:text="${n.getDate()}"></div>
+
+						<div class="updateAndDelete" th:if="${n.user.getId()} == ${session.sessionUser.getId()}">
+							<div class="update">
+								<i class="ri-refresh-line"></i>
+							</div>
+							<div class="delete">
+								<a th:href="@{/deleteComment(id=${n.getId()}, postId=${session.post.getId()})}">
+									<i class="ri-delete-bin-6-line"></i>
+								</a>
+							</div>
+						</div>
 					</div>
 					<div class="comment" th:text="${n.getComment()}"></div>
 				</div>

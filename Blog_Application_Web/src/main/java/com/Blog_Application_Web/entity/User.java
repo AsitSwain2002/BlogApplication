@@ -12,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.AssertFalse;
 import lombok.Data;
 
 @Data
@@ -26,6 +27,7 @@ public class User {
 	private int age;
 	private long mobile;
 	private String email;
+	@Column(nullable = false , length = 10 )
 	private String password;
 	private String image;
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)

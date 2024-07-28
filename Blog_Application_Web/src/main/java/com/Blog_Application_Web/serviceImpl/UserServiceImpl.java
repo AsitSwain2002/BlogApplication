@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserService {
 				Integer pageNumber = PageValueSetting.pageNumber;
 				Integer pageSize = PageValueSetting.pageSize;
 				String sortBy = PageValueSetting.sortBy;
-				Integer count = 0;
+				Integer count = 1;
 				session.setAttribute("pageNumber", pageNumber);
 				session.setAttribute("pageSize", pageSize);
 				session.setAttribute("sortBy", sortBy);

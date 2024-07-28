@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Error Page</title>
+	<link rel="stylesheet" th:href="@{/css/error.css}">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+</head>
+
+<body>
+	<header></header>
+	<div class="mainContainer">
+		<div class="sub1">
+			<h1>SomeThing Went Wrong</h1>
+		</div>
+		<div class="sub2">
+			<div class="errorDetails">
+				<div class="errerName" th:text="${exception.getStatus()}"></div>
+				<div class="details">
+					<div class="content" th:text="${exception.getMsg()}"></div>
+				</div>
+				<div class="btnOuter">
+					<button class="btn"> <a th:href="@{/loginPage}">
+							Back to Login Page</button>
+					</a>
+				</div>
+			</div>
+		</div>
+	
+</body>
+
+</html>

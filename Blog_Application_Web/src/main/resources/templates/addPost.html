@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Add Post</title>
 	<link rel="stylesheet" th:href="@{/css/addPost.css}" />
+	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -25,7 +26,7 @@
 					</select>
 				</div>
 				<div class="user">
-					<img src="img/artistic-noir-suit-design_772298-7598.avif" alt="image">
+					<img alt="User Image" th:src="@{/img/images-removebg-preview.png}" />
 					<div class="name" th:text="${session.sessionUser.getName()}"></div>
 				</div>
 

@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 import com.Blog_Application_Web.Dto.CommentDto;
 import com.Blog_Application_Web.Dto.PostDto;
 import com.Blog_Application_Web.Dto.UserDto;
+import com.Blog_Application_Web.ExceptionHandler.ResourceNotFound;
 import com.Blog_Application_Web.Repo.CommentRepo;
+import com.Blog_Application_Web.Repo.UserRepo;
 import com.Blog_Application_Web.entity.Comments;
 import com.Blog_Application_Web.entity.Post;
 import com.Blog_Application_Web.entity.User;
@@ -54,6 +56,21 @@ public class CommentServImpl implements CommentService {
 		PostDto post = postServ.fetchPostById(postId);
 		List<Comments> commentList = commentRepo.findAllCommentByPost(modelMapper.map(post, Post.class));
 		return commentList.stream().map((e)->modelMapper.map(e, CommentDto.class)).collect(Collectors.toList());
+	}
+
+	@Override
+	public List<CommentDto> fetchUserByCommment(int userId) {
+		UserDto user = userService.findUserById(userId);
+		User userDto = modelMapper.map(user, User.class);
+		List<Comments> findAllCommentByUser = commentRepo.findAllCommentByUser(userDto);
+		return findAllCommentByUser.stream().map((e)->modelMapper.map(e,  CommentDto.class)).collect(Collectors.toList());
+	}
+
+	@Override
+	public void deleteCommentById(int id) {
+		Comments comment = commentRepo.findById(id).orElseThrow(()->new ResourceNotFound("Comment Not Found"));
+		commentRepo.delete(comment);
+	    System.out.println("Comment ID to delete: ===========================================================================================" + id);
 	}
 
 }

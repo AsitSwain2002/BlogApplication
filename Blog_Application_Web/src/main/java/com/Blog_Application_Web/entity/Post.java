@@ -30,7 +30,7 @@ public class Post {
 	@ManyToOne
 	private User user;
 	
-	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Comments> comments;
 	
 	@ManyToOne

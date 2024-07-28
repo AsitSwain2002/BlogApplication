@@ -26,7 +26,7 @@ public class PostController {
 
 	@Autowired
 	private PostService postService;
-	
+
 	@Autowired
 	private CatagoryService catagoryService;
 
@@ -35,21 +35,22 @@ public class PostController {
 		ModelAndView modelAndView = new ModelAndView();
 		List<CatagoryDto> fetchAllCatagory = catagoryService.fetchAllCatagory();
 		modelAndView.addObject("catagories", fetchAllCatagory);
-		modelAndView.setViewName( "addPost");
+		modelAndView.setViewName("addPost");
 		return modelAndView;
 	}
 
 	@PostMapping("/savePost")
-	public RedirectView savePost(@ModelAttribute PostDto postDto, HttpServletRequest request, @RequestParam int postId , @RequestParam int catagory) {
-	    postService.savePost(postDto, request, postId , catagory);
-	    
-	    // Add necessary parameters for the redirect
-	    Integer pageNumber = PageValueSetting.pageNumber;
-	    Integer pageSize = PageValueSetting.pageSize;
-	    String sortBy = PageValueSetting.sortBy;
-	    
-	    String redirectUrl = String.format("/home?pageNumber=%d&pageSize=%d&sortBy=%s", pageNumber, pageSize, sortBy);
-	    return new RedirectView(redirectUrl);
+	public RedirectView savePost(@ModelAttribute PostDto postDto, HttpServletRequest request, @RequestParam int postId,
+			@RequestParam int catagory) {
+		postService.savePost(postDto, request, postId, catagory);
+
+		// Add necessary parameters for the redirect
+		Integer pageNumber = PageValueSetting.pageNumber;
+		Integer pageSize = PageValueSetting.pageSize;
+		String sortBy = PageValueSetting.sortBy;
+
+		String redirectUrl = String.format("/home?pageNumber=%d&pageSize=%d&sortBy=%s", pageNumber, pageSize, sortBy);
+		return new RedirectView(redirectUrl);
 	}
 
 	@GetMapping("/home")
@@ -58,34 +59,51 @@ public class PostController {
 		ModelAndView modelAndView = new ModelAndView();
 		HttpSession session = request.getSession(false);
 		List<PostDto> allPosts = postService.allPOst(request, pageNumber, pageSize, sortBy);
-		modelAndView.addObject("sessionListPostHttpSession", allPosts);
 		session.setAttribute("sessionListPostHttpSession", allPosts);
-		Integer sessionCount = (Integer) session.getAttribute("count");
-		Integer countInc = sessionCount + 1;
-		session.setAttribute("count", countInc);
 		modelAndView.setViewName("home");
 		return modelAndView;
+	}
+
+	@GetMapping("/next")
+	public ModelAndView nextPage(HttpSession session, HttpServletRequest req) {
+		Integer pageNumber = (Integer) session.getAttribute("pageNumber");
+		Integer pageSize = (Integer) session.getAttribute("pageSize");
+		String sortBy = (String) session.getAttribute("sortBy");
+		Integer count = (Integer) session.getAttribute("count");
+
+		pageNumber = (pageNumber == null) ? 0 : pageNumber;
+		pageNumber++;
+
+		List<PostDto> allPost = postService.allPOst(req, pageNumber, pageSize, sortBy);
+		session.setAttribute("pageNumber", pageNumber);
+		session.setAttribute("sessionListPostHttpSession", allPost);
+		session.setAttribute("count", count + 1); // Increment count or set based on logic
+
+		return new ModelAndView("home");
 	}
 
 	@GetMapping("/back")
-	public ModelAndView backPage(HttpServletRequest request, @RequestParam Integer pageNumber,
-			@RequestParam Integer pageSize, @RequestParam String sortBy) {
-		ModelAndView modelAndView = new ModelAndView();
-		HttpSession session = request.getSession(false);
-		List<PostDto> allPosts = postService.allPOst(request, pageNumber, pageSize, sortBy);
-
-		modelAndView.addObject("sessionListPostHttpSession", allPosts);
-
-		session.setAttribute("sessionListPostHttpSession", allPosts);
+	public ModelAndView previousPage(HttpSession session, HttpServletRequest req) {
+		Integer pageNumber = (Integer) session.getAttribute("pageNumber");
+		Integer pageSize = (Integer) session.getAttribute("pageSize");
+		String sortBy = (String) session.getAttribute("sortBy");
 		Integer count = (Integer) session.getAttribute("count");
-		Integer resetCount = count - 1;
-		session.setAttribute("resetCount", resetCount);
-		modelAndView.setViewName("home");
-		return modelAndView;
+		if(count < 0) {
+			pageNumber = 0;
+		}
+   
+		pageNumber = (pageNumber == null || pageNumber <= 0) ? 0 : pageNumber - 1;
+
+		List<PostDto> allPost = postService.allPOst(req, pageNumber, pageSize, sortBy);
+		session.setAttribute("pageNumber", pageNumber);
+		session.setAttribute("sessionListPostHttpSession", allPost);
+		session.setAttribute("count", count - 1); // Decrement count or set based on logic
+
+		return new ModelAndView("home");
 	}
 
 	@GetMapping("/postPage")
-	public ModelAndView fullPostPage(@RequestParam int id , HttpServletRequest req) {
+	public ModelAndView fullPostPage(@RequestParam int id, HttpServletRequest req) {
 		ModelAndView modelAndView = new ModelAndView();
 		PostDto postDto = postService.fetchPostById(id);
 		List<CommentDto> comments = postDto.getComments();
