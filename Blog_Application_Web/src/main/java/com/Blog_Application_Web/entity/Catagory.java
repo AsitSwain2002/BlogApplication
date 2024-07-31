@@ -19,6 +19,6 @@ public class Catagory {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String catagoryName;
-	@OneToMany(mappedBy = "catagory" , cascade = CascadeType.ALL , fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "catagory" , cascade = CascadeType.ALL)
 	private List<Post> posts;
 }

@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.Blog_Application_Web.Dto.UserDto;
+import com.Blog_Application_Web.service.PostService;
 import com.Blog_Application_Web.service.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -56,5 +57,6 @@ public class UserController {
 		session.removeAttribute("sessionUser");
 		return "login";
 	}
+
 
 }

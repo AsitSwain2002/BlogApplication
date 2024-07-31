@@ -13,7 +13,7 @@ public interface PostService {
 
 	ModelAndView savePost(PostDto postDto, HttpServletRequest req, int postId , int catagoryId);
 
-	ModelAndView updatePost(PostDto postDto, int id);
+	PostDto updatePost(PostDto postDto, int id);
 
 	public PostDto fetchPostById(int postId);
 
@@ -24,5 +24,6 @@ public interface PostService {
 	List<PostDto> allPostByUser(int userId);
 	
 	public List<PostDto> search(String keyword);
+	
 	
 	}

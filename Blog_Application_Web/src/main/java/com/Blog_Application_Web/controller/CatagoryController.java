@@ -49,7 +49,9 @@ public class CatagoryController {
 		HttpSession session = req.getSession(false);
 		if(session != null) {
 		List<PostDto> fetchPostByCatagory = catagoryService.fetchPostByCatagory(id);
+		int size = fetchPostByCatagory.size();
 		session.setAttribute("sessionListPostHttpSession", fetchPostByCatagory);
+		session.setAttribute("postSize", size);
 		modelAndView.setViewName("home");
 		return modelAndView;
 		}else {

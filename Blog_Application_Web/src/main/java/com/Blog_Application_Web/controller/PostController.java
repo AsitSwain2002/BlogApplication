@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -59,7 +60,9 @@ public class PostController {
 		ModelAndView modelAndView = new ModelAndView();
 		HttpSession session = request.getSession(false);
 		List<PostDto> allPosts = postService.allPOst(request, pageNumber, pageSize, sortBy);
+		int size = allPosts.size();
 		session.setAttribute("sessionListPostHttpSession", allPosts);
+		session.setAttribute("postSize", size);
 		modelAndView.setViewName("home");
 		return modelAndView;
 	}
@@ -76,7 +79,9 @@ public class PostController {
 
 		List<PostDto> allPost = postService.allPOst(req, pageNumber, pageSize, sortBy);
 		session.setAttribute("pageNumber", pageNumber);
+		int size = allPost.size();
 		session.setAttribute("sessionListPostHttpSession", allPost);
+		session.setAttribute("postSize", size);
 		session.setAttribute("count", count + 1); // Increment count or set based on logic
 
 		return new ModelAndView("home");
@@ -96,7 +101,9 @@ public class PostController {
 
 		List<PostDto> allPost = postService.allPOst(req, pageNumber, pageSize, sortBy);
 		session.setAttribute("pageNumber", pageNumber);
+		int size = allPost.size();
 		session.setAttribute("sessionListPostHttpSession", allPost);
+		session.setAttribute("postSize", size);
 		session.setAttribute("count", count - 1); // Decrement count or set based on logic
 
 		return new ModelAndView("home");
@@ -121,6 +128,53 @@ public class PostController {
 		List<PostDto> search1 = postService.search(search);
 		session.setAttribute("sessionListPostHttpSession", search1);
 		modelAndView.setViewName("home");
+		return modelAndView;
+	}
+	
+	@GetMapping("/profile")
+	public ModelAndView profilePage(){
+		ModelAndView modelAndView = new ModelAndView("profile");
+		return modelAndView;
+	}
+	
+	@GetMapping("/allPostByuser")
+	public ModelAndView fetchAllPostByUser(@RequestParam int id , HttpServletRequest req) {
+		ModelAndView modelAndView = new ModelAndView();
+		List<PostDto> allPostByUser = postService.allPostByUser(id);
+		int postSize = allPostByUser.size();
+		HttpSession session = req.getSession(false);
+		session.setAttribute("UserAllPost", allPostByUser);
+		session.setAttribute("postSize", postSize);
+		modelAndView.setViewName("allPostUser");
+		return modelAndView;
+	}
+	
+	@GetMapping("/updatePostPage")
+	public ModelAndView showUpdatePage(@RequestParam int id) {
+		PostDto post = postService.fetchPostById(id);
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("post", post);
+		modelAndView.setViewName("updatePost");
+		return modelAndView; 
+	}
+//	
+//		
+	@PostMapping("/updatePost")
+	public ModelAndView updatePost(@ModelAttribute PostDto postDto , @RequestParam int id) {
+		ModelAndView modelAndView = new ModelAndView();
+		postService.updatePost(postDto, id);
+		modelAndView.setViewName("allPostUser");
+		return modelAndView;
+	}
+	
+	@GetMapping("/deletePost")
+	public ModelAndView deleteById(@RequestParam int id , @RequestParam Integer userId, HttpServletRequest req) {
+		ModelAndView modelAndView = new ModelAndView();
+		postService.deletePost(id);
+		List<PostDto> allPostByUser = postService.allPostByUser(userId);
+		HttpSession session = req.getSession(false);
+		session.setAttribute("UserAllPost", allPostByUser);
+		modelAndView.setViewName("allPostUser");
 		return modelAndView;
 	}
 }

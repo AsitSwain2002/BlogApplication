@@ -15,9 +15,9 @@
         </div>
         <div class="sub2">
             <div class="errorDetails">
-                <div class="errerName">404 - Not Found</div>
+                <div class="errerName" th:text="${exception.getStatus()}"></div>
                 <div class="details">
-                    <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam amet debitis quibusdam</div>
+                    <div class="content" th:text="${exception.getMsg()}"></div>
             </div>
             <div class="btnOuter">
                 <button class="btn"><a href="#">

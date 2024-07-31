@@ -65,7 +65,9 @@ public class UserServiceImpl implements UserService {
 				session.setAttribute("sortBy", sortBy);
 				session.setAttribute("count", count);
 				List<PostDto> allPOst = postService.allPOst(req, pageNumber, pageSize, sortBy);
+				int size = allPOst.size();
 				session.setAttribute("sessionListPostHttpSession", allPOst);
+				session.setAttribute("postSize", size);
 				modelAndView.setViewName("home");
 			} else {
 				modelAndView.addObject("PasWrong", "invalid Password");

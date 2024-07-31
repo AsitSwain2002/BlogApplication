@@ -2,12 +2,16 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	scrollbar-width: thin;
+	scrollbar-color: #010536 #f1f1f1;
 }
 
 header {
 	height: 10vh;
 	width: 100%;
 	background-color: #010536;
+	position: sticky;
+	top: 0%;
 }
 
 nav {
@@ -191,4 +195,9 @@ body {
 .submit {
 	width: 98%;
 	height: 5vh;
+}
+footer{
+	height: 5vh;
+	width: 100%;
+	background-color: #010536;
 }

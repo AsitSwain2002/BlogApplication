@@ -20,8 +20,9 @@
 				<div class="selectContainer">
 					<select id="dropdown">
 						<option>Select</option>
+						<option th:value="@{/home(pageNumber=${0}, pageSize=${session.pageSize}, sortBy=${session.sortBy})}">Home</option>
 						<option th:value="@{/addPostPage}">Create Post</option>
-						<option value="option2">Profile</option>
+						<option th:value="@{/profile}">Profile</option>
 						<option th:value="@{/addCatagory}" disabled>Add Catagory</option>
 						<option th:value="@{/logoutPage}">LogOut</option>
 					</select>
@@ -53,7 +54,7 @@
 					<input type="submit" value="Search" class="searchBtn">
 				</form>
 			</div>
-			<div class="mainPostcontainer">
+			<div class="mainPostcontainer" th:if="${session.postSize > 0}">
 				<div class="post" th:each="n : ${session.sessionListPostHttpSession}">
 					<a th:href="@{/postPage(id=${n.getId()})}">
 						<div class="image">
@@ -62,6 +63,9 @@
 						<div class="title" th:text="${n.getTitle()}"></div>
 					</a>
 				</div>
+			</div>
+			<div th:if="${session.postSize == 0}" id="noPost">
+				<h3>No Post Found</h3>
 			</div>
 			<div class="next">
 				<a

@@ -7,11 +7,12 @@
 }
 
 header {
-	height: 10vh;
+	height: 9.5vh;
 	width: 100%;
 	background-color: #010536;
-	position: fixed;
+	position: sticky;
 	top: 0%;
+	z-index: 1;
 }
 
 nav {
@@ -67,7 +68,7 @@ option {
 	max-width: 15%;
 	display: flex;
 	align-items: center;
-	
+
 }
 
 .user img {
@@ -120,6 +121,7 @@ main {
 	min-height: 100vh;
 	overflow-y: hidden;
 	background-color: #FFFFF0;
+	position: relative;
 }
 
 .mainPostcontainer {
@@ -129,47 +131,19 @@ main {
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: center;
+	margin-top: 4vh;
 }
 
-.searchBox {
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
-	height: 7vh;
-	width: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
 
-.search {
-	height: 5vh;
-	width: 25vw;
-	border-radius: 20px;
-	outline: none;
-	padding-left: 15px;
-	padding-right: 15px;
-	letter-spacing: 1px;
-	color: #010536;
-	border: 1px solid #010536;
-	background-color: transparent;
-}
 
-.searchBtn {
-	height: 5vh;
-	width: 8vw;
-	border-radius: 20px;
-	outline: none;
-	font-size: large;
-	background-color: #010536;
-	color: yellow;
-	cursor: pointer;
-}
+
 
 .post {
 	height: 30vh;
 	width: 24%;
 	margin: 5px 5px;
 	box-shadow: 2px 2px 20px rgb(67, 63, 63);
+	cursor: pointer;
 }
 
 .post a {
@@ -180,9 +154,6 @@ main {
 	height: 70%;
 	width: 100%;
 	border: 1px solid red;
-	display: flex;
-	align-items: center;
-	justify-content: center;
 }
 
 .inImg {
@@ -238,13 +209,15 @@ main {
 #noPost{
 	font-size: 27px;
 	height: 20vh;
-	width : 50%;
+	width : 40%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	font-family: "Ga Maamli", sans-serif;
+	position: absolute;
+	top: 38%;
+	left: 30%;
 	color: yellow;
 	background-color: #010536;
 	border-radius: 15px;
-	margin:auto;
 }

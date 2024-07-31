@@ -18,6 +18,7 @@ import com.Blog_Application_Web.Dto.PostDto;
 import com.Blog_Application_Web.Dto.UserDto;
 import com.Blog_Application_Web.ExceptionHandler.ResourceNotFound;
 import com.Blog_Application_Web.Repo.PostRepo;
+import com.Blog_Application_Web.Repo.UserRepo;
 import com.Blog_Application_Web.entity.Catagory;
 import com.Blog_Application_Web.entity.Post;
 import com.Blog_Application_Web.entity.User;
@@ -34,7 +35,9 @@ public class PostServiceImpl implements PostService {
 
 	@Autowired
 	private PostRepo postRepo;
-
+    
+	@Autowired
+	private UserRepo userRepo;
 	@Autowired
 	private ModelMapper modelMapper;
 
@@ -74,15 +77,21 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public ModelAndView updatePost(PostDto postDto, int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public PostDto updatePost(PostDto postDto, int id) {
+		Post post = postRepo.findById(id).orElseThrow(() -> new ResourceNotFound("Post Not found"));
+		post.setTitle(postDto.getTitle());
+		post.setCatagory(postDto.getCatagory());
+		post.setContent(postDto.getContent());
+		post.setImage(postDto.getImage());
+		
+		Post savePost = postRepo.save(post);
+		return modelMapper.map(savePost, PostDto.class);
 	}
 
 	@Override
 	public void deletePost(int id) {
-		// TODO Auto-generated method stub
-
+		Post post = postRepo.findById(id).orElseThrow(() -> new ResourceNotFound("Post Not Found"));
+		postRepo.delete(post);
 	}
 
 	@Override
@@ -100,8 +109,10 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public List<PostDto> allPostByUser(int userId) {
-		// TODO Auto-generated method stub
-		return null;
+		userRepo.findById(userId).orElseThrow(() -> new ResourceNotFound("User Not Found"));
+		List<Post> post = postRepo.allPostByUser(userId);
+		List<PostDto> collect = post.stream().map((e) -> modelMapper.map(e, PostDto.class)).collect(Collectors.toList());
+		return collect;
 	}
 
 	@Override
@@ -110,5 +121,6 @@ public class PostServiceImpl implements PostService {
 		return searchBytitle.stream().map((e) -> modelMapper.map(e, PostDto.class)).collect(Collectors.toList());
 
 	}
+
 
 }
