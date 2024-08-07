@@ -1,5 +1,6 @@
 package com.Blog_Application_Web.serviceImpl;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.Blog_Application_Web.Dto.CatagoryDto;
@@ -23,6 +25,7 @@ import com.Blog_Application_Web.entity.Catagory;
 import com.Blog_Application_Web.entity.Post;
 import com.Blog_Application_Web.entity.User;
 import com.Blog_Application_Web.service.CatagoryService;
+import com.Blog_Application_Web.service.ImageService;
 import com.Blog_Application_Web.service.PostService;
 import com.Blog_Application_Web.service.UserService;
 import com.Blog_Application_Web.utility.PageValueSetting;
@@ -42,23 +45,33 @@ public class PostServiceImpl implements PostService {
 	private ModelMapper modelMapper;
 
 	@Autowired
-	private UserService userServ;
-
+	private UserService userServ;  
+	
+	@Autowired
+    private ImageService imgServ;
+	
 	@Autowired
 	private CatagoryService catagoryService;
 
 	@Override
-	public ModelAndView savePost(PostDto postDto, HttpServletRequest req, int postId, int catagoryId) {
+	public ModelAndView savePost(PostDto postDto, HttpServletRequest req, int postId, int catagoryId , MultipartFile image , String path) throws IOException {
 		ModelAndView mod = new ModelAndView();
 		UserDto userDto = userServ.findUserById(postId);
 		Post post = modelMapper.map(postDto, Post.class);
         CatagoryDto catagory = catagoryService.findById(catagoryId);
+        
 		post.setTitle(postDto.getTitle());
 		post.setContent(postDto.getContent());
-		post.setImage("default.jpg");
+		//Called the image service  method
+		String uploadImage = imgServ.uploadImage(image, path);
+		post.setImage(uploadImage);
+		
 		post.setDate(new Date());
 		post.setUser(modelMapper.map(userDto, User.class));
 		post.setCatagory(modelMapper.map(catagory, Catagory.class));
+		
+		 
+		
 		postRepo.save(post);
 		mod.addObject("post", post);
 		Integer pageNumber = PageValueSetting.pageNumber;

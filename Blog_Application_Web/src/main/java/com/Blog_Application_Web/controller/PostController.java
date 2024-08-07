@@ -1,14 +1,17 @@
 package com.Blog_Application_Web.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -31,6 +34,9 @@ public class PostController {
 	@Autowired
 	private CatagoryService catagoryService;
 
+	@Value("${image.path}")
+	private String path;
+
 	@GetMapping("/addPostPage")
 	public ModelAndView postPage() {
 		ModelAndView modelAndView = new ModelAndView();
@@ -42,8 +48,9 @@ public class PostController {
 
 	@PostMapping("/savePost")
 	public RedirectView savePost(@ModelAttribute PostDto postDto, HttpServletRequest request, @RequestParam int postId,
-			@RequestParam int catagory) {
-		postService.savePost(postDto, request, postId, catagory);
+			@RequestParam int catagory , @RequestParam MultipartFile image) throws IOException {
+		
+	  postService.savePost(postDto, request, postId, catagory, image , path);
 
 		// Add necessary parameters for the redirect
 		Integer pageNumber = PageValueSetting.pageNumber;
@@ -93,10 +100,10 @@ public class PostController {
 		Integer pageSize = (Integer) session.getAttribute("pageSize");
 		String sortBy = (String) session.getAttribute("sortBy");
 		Integer count = (Integer) session.getAttribute("count");
-		if(count < 0) {
+		if (count < 0) {
 			pageNumber = 0;
 		}
-   
+
 		pageNumber = (pageNumber == null || pageNumber <= 0) ? 0 : pageNumber - 1;
 
 		List<PostDto> allPost = postService.allPOst(req, pageNumber, pageSize, sortBy);
@@ -130,15 +137,15 @@ public class PostController {
 		modelAndView.setViewName("home");
 		return modelAndView;
 	}
-	
+
 	@GetMapping("/profile")
-	public ModelAndView profilePage(){
+	public ModelAndView profilePage() {
 		ModelAndView modelAndView = new ModelAndView("profile");
 		return modelAndView;
 	}
-	
+
 	@GetMapping("/allPostByuser")
-	public ModelAndView fetchAllPostByUser(@RequestParam int id , HttpServletRequest req) {
+	public ModelAndView fetchAllPostByUser(@RequestParam int id, HttpServletRequest req) {
 		ModelAndView modelAndView = new ModelAndView();
 		List<PostDto> allPostByUser = postService.allPostByUser(id);
 		int postSize = allPostByUser.size();
@@ -148,27 +155,28 @@ public class PostController {
 		modelAndView.setViewName("allPostUser");
 		return modelAndView;
 	}
-	
+
 	@GetMapping("/updatePostPage")
 	public ModelAndView showUpdatePage(@RequestParam int id) {
 		PostDto post = postService.fetchPostById(id);
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("post", post);
 		modelAndView.setViewName("updatePost");
-		return modelAndView; 
+		return modelAndView;
 	}
+
 //	
 //		
 	@PostMapping("/updatePost")
-	public ModelAndView updatePost(@ModelAttribute PostDto postDto , @RequestParam int id) {
+	public ModelAndView updatePost(@ModelAttribute PostDto postDto, @RequestParam int id) {
 		ModelAndView modelAndView = new ModelAndView();
 		postService.updatePost(postDto, id);
 		modelAndView.setViewName("allPostUser");
 		return modelAndView;
 	}
-	
+
 	@GetMapping("/deletePost")
-	public ModelAndView deleteById(@RequestParam int id , @RequestParam Integer userId, HttpServletRequest req) {
+	public ModelAndView deleteById(@RequestParam int id, @RequestParam Integer userId, HttpServletRequest req) {
 		ModelAndView modelAndView = new ModelAndView();
 		postService.deletePost(id);
 		List<PostDto> allPostByUser = postService.allPostByUser(userId);

@@ -10,6 +10,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.Data;
@@ -29,10 +30,10 @@ public class Post {
 
 	@ManyToOne
 	private User user;
-	
+
 	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Comments> comments;
-	
+
 	@ManyToOne
 	private Catagory catagory;
 }

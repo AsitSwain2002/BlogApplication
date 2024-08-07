@@ -46,16 +46,18 @@
 						<div class="imgName" th:text="${session.sessionUser.getName()}"></div>
 					</div>
 					<div class="content">
-						<form action="/savePost" method="post">
+						<form action="/savePost" method="post" enctype="multipart/form-data">
 							<div class="postTitel">
 								<input type="text" name="title" id="text" placeholder="Enter Title Here">
 								<div class="catagory">
 									<select name="catagory" class="select">
 										<option selected>Select Catagory</option>
-										<option th:each="n : ${catagories}" th:value="${n.getId()}" th:text="${n.getCatagoryName()}"></option>
-										
+										<option th:each="n : ${catagories}" th:value="${n.getId()}"
+											th:text="${n.getCatagoryName()}"></option>
+
 									</select>
 								</div>
+								<input type="file" name="image" id="inputImage" required>
 							</div>
 							<textarea name="content" class="contentWrite"
 								placeholder="Write Content Here...."></textarea>

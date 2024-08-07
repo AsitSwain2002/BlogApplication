@@ -57,6 +57,11 @@ public class UserController {
 		session.removeAttribute("sessionUser");
 		return "login";
 	}
+	
+	@GetMapping("/forgotPage")
+	public String forget() {
+		return "forgetPassword";
+	}
 
 
 }
