@@ -1,0 +1,223 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	scrollbar-width: thin;
+	scrollbar-color: #010536 #f1f1f1;
+}
+
+header {
+	height: 9.5vh;
+	width: 100%;
+	background-color: #010536;
+	position: sticky;
+	top: 0%;
+	z-index: 1;
+}
+
+nav {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.logo {
+	height: 90%;
+	width: 10%;
+	margin-left: 2%;
+}
+
+.logo img {
+	height: 100%;
+	width: 100%;
+}
+
+.selectContainer {
+	border: 1px solid yellow;
+	border-radius: 20px;
+	height: 6vh;
+	width: 10%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0 3% 0 62.4%;
+}
+
+#dropdown {
+	height: 80%;
+	width: 90%;
+	background-color: transparent;
+	color: yellow;
+	border: none;
+	outline: none;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+option {
+	background-color: #010536;
+	font-size: 15px;
+	font-weight: 500;
+	width: 100px;
+}
+
+.user {
+	height: 90%;
+	min-width: 12%;
+	max-width: 15%;
+	display: flex;
+	align-items: center;
+
+}
+
+.user img {
+	height: 100%;
+	width: 34%;
+	border-radius: 50%;
+	border: 1px solid yellow;
+	cursor: pointer;
+}
+
+.name {
+	color: yellow;
+	padding-left: 10px;
+	font-family: "Ga Maamli", sans-serif;
+}
+
+.subHead {
+	margin-top: 10vh;
+	height: 7vh;
+	max-width: 100vw;
+	display: flex;
+	align-items: center;
+}
+
+.catagory {
+	height: 80%;
+	min-width: 10%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 400;
+	font-family: "Roboto", sans-serif;
+	border-radius: 10px;
+	color: #003366;
+}
+
+.catagory a {
+	text-decoration: none;
+}
+
+.catagory:hover {
+	font-weight: 800;
+	cursor: pointer;
+	background-color: #010536;
+	color: yellow;
+	background-color: rgb(209, 210, 211);
+}
+
+main {
+	min-height: 100vh;
+	overflow-y: hidden;
+	background-color: #FFFFF0;
+	position: relative;
+}
+
+.mainPostcontainer {
+	min-height: 80vh;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin-top: 4vh;
+}
+
+
+
+
+
+.post {
+	height: 30vh;
+	width: 24%;
+	margin: 5px 5px;
+	box-shadow: 2px 2px 20px rgb(67, 63, 63);
+	cursor: pointer;
+}
+
+.post a {
+	text-decoration: none;
+}
+
+.image {
+	height: 70%;
+	width: 100%;
+	border: 1px solid red;
+}
+
+.inImg {
+	height: 100%;
+	width: 100%;
+
+
+}
+
+.title {
+	height: 30%;
+	width: 100%;
+	border: 1px solid yellow;
+	padding: 0 11px;
+	font-size: 17px;
+	font-weight: 700;
+	letter-spacing: 0.05em;
+	color: yellow;
+	background-color: #010536;
+	display: flex;
+	align-items: center;
+	font-family: "Ga Maamli", sans-serif;
+}
+
+.next {
+	height: 5vh;
+	width: 100%;
+	margin: 20px 0;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.backBtn {
+	height: 5vh;
+	width: 11vw;
+	font-size: 20px;
+	border-radius: 1em;
+	cursor: pointer;
+	color: yellow;
+	background-color: #010536;
+}
+
+.btn {
+	height: 5vh;
+	width: 11vw;
+	font-size: 20px;
+	border-radius: 1em;
+	cursor: pointer;
+	color: yellow;
+	background-color: #010536;
+}
+#noPost{
+	font-size: 27px;
+	height: 20vh;
+	width : 40%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: "Ga Maamli", sans-serif;
+	position: absolute;
+	top: 38%;
+	left: 30%;
+	color: yellow;
+	background-color: #010536;
+	border-radius: 15px;
+}

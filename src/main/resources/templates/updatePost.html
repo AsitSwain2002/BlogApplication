@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" th:href="@{/css/updatePost.css}" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+	<title>Post</title>
+</head>
+
+<body>
+	<div th:if="${session.sessionUser != null}">
+		<header>
+			<nav>
+				<div class="logo">
+					<img alt="Logo" th:src="@{/img/blogspotter-high-resolution-logo (1).png}" />
+				</div>
+				<div class="selectContainer">
+					<select id="dropdown">
+						<option>Select</option>
+						<option th:value="@{/home(pageNumber=${0}, pageSize=${session.pageSize}, sortBy=${session.sortBy})}">Home</option>
+						<option th:value="@{/addPostPage}">Create Post</option>
+						<option th:value="@{/profile}">Profile</option>
+						<option value="#">About</option>
+						<option th:value="@{/logoutPage}">LogOut</option>
+					</select>
+				</div>
+				<div class="user">
+					<img alt="User Image" th:src="@{/img/images-removebg-preview.png}" />
+					<div class="name" th:text="${session.sessionUser.getName()}"></div>
+				</div>
+			</nav>
+		</header>
+		<main>
+			<div class="content">
+				<form action="/updatePost" method="post">
+					<div class="heading">
+						<input type="text" name="title" th:value="${post.getTitle()}" class="heading">
+					</div>
+					<div class="imageSection"></div>
+					<pre class="contentSection">
+                   <textarea name="content" class="contentSectionIn" th:text="${post.getContent()}"></textarea>
+			</pre>
+			<input type="hidden" name="id" th:value="${post.getId}" />
+					<div id="subCon">
+						<div id="deleteAndUpdate">
+							<div id="update">
+								<button type="submit">
+									<i class="ri-refresh-line"></i>
+								</button>
+							</div>
+							<div id="delete">
+								<a th:href="@{/deletePost(id=${post.getId()} , userId = ${session.sessionUser.getId()})}">
+								<i class="ri-delete-bin-6-line"></i>
+								</a>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</main>
+		<footer>
+
+		</footer>
+		<script>
+			document.getElementById('dropdown').addEventListener('change', function () {
+				var selectedValue = this.value;
+				if (selectedValue) {
+					window.location.href = selectedValue;
+				}
+			});
+		</script>
+	</div>
+	<!-- If user is not logged in -->
+	<div th:unless="${session.sessionUser != null}">
+		<script th:inline="javascript">
+			/*<![CDATA[*/
+			window.location.replace(/*[[@{/loginPage}]]*/);
+            /*]]>*/
+		</script>
+	</div>
+</body>
+
+</html>

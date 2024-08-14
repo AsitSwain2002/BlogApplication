@@ -1,0 +1,75 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+	background-color: blu;
+}
+.register-box{
+	height: 2.5rem;
+	width: 100%;
+    font-size: 1.4rem;
+    font-family: "Sedan SC", serif;
+}
+.MainContainer{
+    border: 1px solid black;
+    height: 70vh;
+    width: 50vw;
+    position: absolute;
+   transform: translate(-50%,15%);
+   left: 50%;
+   display: flex;
+   box-shadow: 7px 5px 10px rgb(114, 124, 230);
+}
+.subContainer0{
+	height: 6vh;
+	width: 50vw;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: auto;
+	font-size: 25px;
+}
+.subContainer1{
+    height: 100%;
+    width: 45%;
+}
+.subContainer2{
+    height: 100%;
+    width: 55%;
+}
+.subContainer1 img{
+    padding-top: 50px;
+    height:70%;
+    width: 100%; 
+}
+.header{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: 800;
+    color: rgb(156, 141, 238);
+}
+.name-design{
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 20px;
+    padding-top: 5px;
+}
+.block{
+    display: block;
+    border: none;
+    border-bottom: 0.5px solid rgb(188, 180, 236) ;
+    width: 90%;
+   padding-left: 2px;
+   outline: none;
+   margin-top: 5px;
+   font-family: "Briem Hand", cursive; 
+}
+.sub{
+    width: 7em;
+    height: 2.5rem;
+    font-size: 18px;
+    margin-top: 1.5rem;
+    border-radius:30px;
+    border: 1px solid rgb(188, 180, 236);
+}

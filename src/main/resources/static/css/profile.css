@@ -1,0 +1,330 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scrollbar-width: thin;
+	scrollbar-color: #010536 #f1f1f1;
+}
+body{
+	background-color: #F4F7FA;
+}
+header {
+	height: 10vh;
+	width: 100%;
+	background-color: #010536;
+	position: fixed;
+	top: 0%;
+}
+
+nav {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.logo {
+	height: 90%;
+	width: 10%;
+	margin-left: 2%;
+}
+
+.logo img {
+	height: 100%;
+	width: 100%;
+}
+
+.selectContainer {
+	border: 1px solid yellow;
+	border-radius: 20px;
+	height: 6vh;
+	width: 10%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0 3% 0 62.4%;
+}
+
+#dropdown {
+	height: 80%;
+	width: 90%;
+	background-color: transparent;
+	color: yellow;
+	border: none;
+	outline: none;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+option {
+	background-color: #010536;
+	font-size: 15px;
+	font-weight: 500;
+	width: 100px;
+}
+
+.user {
+	height: 90%;
+	min-width: 12%;
+	max-width: 15%;
+	display: flex;
+	align-items: center;
+	
+}
+
+.user img {
+	height: 100%;
+	width: 34%;
+	border-radius: 50%;
+	border: 1px solid yellow;
+	cursor: pointer;
+}
+
+.name {
+	color: yellow;
+	padding-left: 10px;
+	font-family: "Ga Maamli", sans-serif;
+}
+
+
+main {
+    background-color: #F4F7FA;
+    height: 80vh;
+    width: 100%;
+    position: relative;
+    margin-top: 12vh;
+}
+
+.socialAcc {
+    height: 5vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.twitter {
+    height: 100%;
+    width: 40px;
+    border-radius: 50%;
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+}
+
+.ri-twitter-fill {
+    font-size: 20px;
+    color: #425A8B;
+}
+
+.pading {
+    margin: 0 7px;
+}
+
+.git {
+    height: 100%;
+    width: 40px;
+    border-radius: 50%;
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+}
+
+.ri-github-fill {
+    font-size: 20px;
+    color: #425A8B;
+}
+
+.linked {
+    height: 100%;
+    width: 40px;
+    border-radius: 50%;
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+}
+
+.ri-linkedin-fill {
+    font-size: 20px;
+    color: #425A8B;
+}
+
+.profile {
+    height: 20vh;
+  width: 10.5vw;
+  border: 1px solid black;
+  border-radius: 50%;
+  position: absolute;
+  left: 44.5%;
+  top: 10%;
+  display: block;
+  z-index: 1;
+}
+
+.profile img {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+}
+
+.mainBox {
+    height: 70vh;
+    width: 60vw;
+    background-color: white;
+    border: 1px solid rgb(11, 11, 11);
+    margin: auto;
+    bottom: 26px;
+    position: absolute;
+    top: 44%;
+    left: 20%;
+    border-radius: 15px;
+
+}
+
+.nameBox1 {
+    height: 30px;
+    width: 100%;
+    font-family: "Source Code Pro", monospace;
+    font-size: 2rem;
+    margin-top: 7vh;
+    letter-spacing: 1px;
+    font-weight: bolder;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.nameBox2 {
+    height: 30px;
+    width: 100%;
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    display: flex;
+    justify-content: center;
+    font-family: "Hind Siliguri", sans-serif;
+}
+
+.bar {
+    height: 4px;
+    width: 90%;
+    background-color: #E9EEF5;
+    margin: auto;
+}
+
+.contact {
+    height: 6vh;
+    width: 80%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.contact1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 21%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin-right: 3px;
+
+}
+
+.ri-phone-line {
+    font-size: 22px;
+    color: #425A8B;
+    
+}
+
+.num {
+    padding-left: 8px;
+    color: #425A8B;
+    font-family: "Hind Siliguri", sans-serif;
+    font-size: 15px;
+}
+
+.contact2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 21%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin-left: 3px;
+
+}
+
+.ri-mail-line {
+    font-size: 22px;
+    color: #425A8B;
+    ;
+}
+
+.email {
+    padding-left: 8px;
+    color: #425A8B;
+    font-family: "Hind Siliguri", sans-serif;
+    font-size: 15px;
+}
+
+.bar2 {
+    height: 3px;
+    width: 90%;
+    background-color: #E9EEF5;
+    margin: auto;
+}
+.leftSide{
+    height: 65%;
+    width: 30%;
+    margin: 10px 0 0 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 12px;
+    background-color:#E9EEF5;
+}
+.subBox1,.subBox2,.subBox3{
+    height: 15%;
+    width: 90%;
+    border: 1px solid #010536;
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    border-radius: 10px; 
+}
+.subBox1 >a {
+    font-size: 17px;
+    text-decoration: none;
+    color: #01050f;
+    font-family: "Hind Siliguri", sans-serif;
+    font-weight: 700;
+}
+.subBox2 >a {
+    font-size: 17px;
+    text-decoration: none;
+    color: #01050f;
+    font-family: "Hind Siliguri", sans-serif;
+    font-weight: 700;
+}
+.subBox3 >a {
+    font-size: 17px;
+    text-decoration: none;
+    color: #01050f;
+    font-family: "Hind Siliguri", sans-serif;
+    font-weight: 700;
+}

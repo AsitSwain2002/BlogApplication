@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Add Post</title>
+	<link rel="stylesheet" th:href="@{/css/addPost.css}" />
+	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+	<div th:if="${session.sessionUser != null}">
+		<header>
+			<nav>
+				<div class="logo">
+					<img src="img/blogspotter-high-resolution-logo (1).png" alt="Logo">
+				</div>
+				<div class="selectContainer">
+					<select id="dropdown">
+						<option value="option1">Select</option>
+						<option value="option2">Profile</option>
+						<option value="option3">About</option>
+						<option th:value="@{/logoutPage}">LogOut</option>
+						<option>Dark Mode</option>
+					</select>
+				</div>
+				<div class="user">
+					<img alt="User Image" th:src="@{/img/images-removebg-preview.png}" />
+					<div class="name" th:text="${session.sessionUser.getName()}"></div>
+				</div>
+
+			</nav>
+		</header>
+		<main>
+			<div class="mainContainer">
+
+				<div class="postHeading">
+					<h2>Create Post</h2>
+				</div>
+				<div class="subContainer">
+					<div class="imageSection">
+						<div class="image">
+							<img src="img/blogspotter-high-resolution-logo (1).png" alt="image">
+						</div>
+						<div class="imgName" th:text="${session.sessionUser.getName()}"></div>
+					</div>
+					<div class="content">
+						<form action="/savePost" method="post" enctype="multipart/form-data">
+							<div class="postTitel">
+								<input type="text" name="title" id="text" placeholder="Enter Title Here">
+								<div class="catagory">
+									<select name="catagory" class="select">
+										<option selected>Select Catagory</option>
+										<option th:each="n : ${catagories}" th:value="${n.getId()}"
+											th:text="${n.getCatagoryName()}"></option>
+
+									</select>
+								</div>
+								<input type="file" name="image" id="inputImage" required>
+							</div>
+							<textarea name="content" class="contentWrite"
+								placeholder="Write Content Here...."></textarea>
+
+							<input type="hidden" name="postId" th:value="${session.sessionUser.getId()}">
+							<div class="submitOut">
+								<input type="submit" value="Add Post" class="submit">
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</main>
+		<script>
+			document.getElementById('dropdown').addEventListener('change', function () {
+				var selectedValue = this.value;
+				if (selectedValue) {
+					window.location.href = selectedValue;
+				}
+			});
+		</script>
+	</div>
+	<div th:unless="${session.sessionUser != null}">
+		<script th:inline="javascript">
+			/*<![CDATA[*/
+			window.location.replace(/*[[@{/loginPage}]]*/);
+            /*]]>*/
+		</script>
+	</div>
+</body>
+
+</html>

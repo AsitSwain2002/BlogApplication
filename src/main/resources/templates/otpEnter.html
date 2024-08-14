@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Forget Password</title>
+    <link rel="stylesheet" href="css/otpEnter.css">
+</head>
+<body>
+    <div class="Main-Box1">
+        <div class="subCon">
+            <form action="/otpCheck" method="post">
+                <div class="mail">
+                    <!-- Display the invalid OTP message if present -->
+                    <div class="check" th:if="${invalidOtp != null}" th:text="${invalidOtp}"></div>
+                    <input type="text" name="otp" id="mailInn" placeholder="Enter OTP...">
+                    <input type="hidden" name="uniqueId" th:value="${session.uniqueId}"/> <!-- Include uniqueId -->
+                </div>
+                <input class="submit" type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

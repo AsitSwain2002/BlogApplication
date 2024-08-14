@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Sign Up</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="stylesheet" th:href="@{/css/register.css}" />
+</head>
+
+<body>
+	<header>
+		<nav></nav>
+	</header>
+	<main>
+		<div th:text="${success}" class="subContainer0" style="color: green;"></div>
+		<div class="MainContainer">
+			<div class="subContainer1">
+				<img alt="" th:src="@{/img/signup.jpg}" />
+			</div>
+			<div class="subContainer2">
+				<h2 class="header">Sign Up</h2>
+				<form action="register" method="post">
+					<label for="name" class="name-design">Full Name</label>
+					 <input type="text" name="name" class="block"  placeholder="Name..">
+					<label class="name-design">Age</label> <input type="text" name="age" class="block"
+						placeholder="ex.20"> <label class="name-design">Mobile</label> <input type="tel" name="mobile"
+						class="block" placeholder="9965874521"> <label class="name-design">Email</label> <input
+						type="email" name="email" class="block" placeholder="asit52@gmail.com"> <label
+						class="name-design">Password</label> <input type="password" name="password" class="block">
+					<input type="submit" value="Submit" class="sub">
+					<a href="loginPage"><input type="button" value="Login Here" class="sub"></a>
+
+				</form>
+			</div>
+		</div>
+	</main>
+
+</body>
+
+</html>

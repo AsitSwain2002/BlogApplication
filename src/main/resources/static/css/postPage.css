@@ -1,0 +1,254 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	scrollbar-width: thin;
+	scrollbar-color: #010536 #f1f1f1;
+}
+
+body {
+	background-color: #E0E0E0;
+	
+}
+
+header {
+	height: 10vh;
+	width: 100%;
+	background-color: #010536;
+	position: fixed;
+	top: 0%;
+	border-bottom: 1px solid yellow;
+}
+
+nav {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.logo {
+	height: 90%;
+	width: 10%;
+	margin-left: 2%;
+}
+
+.logo img {
+	height: 100%;
+	width: 100%;
+}
+
+.selectContainer {
+	border: 1px solid yellow;
+	border-radius: 20px;
+	height: 6vh;
+	width: 10%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0 3% 0 62.4%;
+}
+
+#dropdown {
+	height: 80%;
+	width: 90%;
+	background-color: transparent;
+	color: yellow;
+	border: none;
+	outline: none;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+option {
+	background-color: #010536;
+	font-size: 15px;
+	font-weight: 500;
+	width: 100px;
+}
+
+.user {
+	height: 90%;
+	min-width: 12%;
+	max-width: 15%;
+	display: flex;
+	align-items: center;
+	
+}
+
+.user img {
+	height: 100%;
+	width: 34%;
+	border-radius: 50%;
+	border: 1px solid yellow;
+	cursor: pointer;
+}
+
+.name {
+	color: yellow;
+	padding-left: 10px;
+	font-family: "Ga Maamli", sans-serif;
+}
+.heading {
+	min-height: 7vh;
+	width: 80vw;
+	margin-top: 0.5em;
+	font-size: 28px;
+	font-family: "Ga Maamli", sans-serif;
+	font-weight: 800;
+	margin-left: 1em;
+	color: #010536;
+	background-color: white;
+}
+
+.content {
+	min-height: 50vh;
+	width: 95vw;
+	margin-top: 4em;
+	font-size: 16px;
+	font-family: "Ga Maamli", sans-serif;
+	font-weight: 600;
+	margin-left: 1.6em;
+	color: black;
+	background-color: white;
+	padding: 15px 15px;
+	border-radius: 12px;
+}
+
+.contentSection {
+	min-height: 40vh;
+	margin-left: 1em;
+	white-space: pre-wrap;
+	/* Ensures the preformatted text wraps */
+	font-family: "Ga Maamli", sans-serif;
+	color: black;
+	background-color: white;
+	padding: 10px;
+}
+
+.commentBox {
+	height: 9vh;
+	width: 97vw;
+	margin: .5em 0em 0em .9em;
+	display: flex;
+	align-items: center;
+}
+
+#commentText {
+	height: 5vh;
+	width: 50%;
+	font-size: 18px;
+	padding-left: 0.4em;
+	border-radius: 8px;
+	outline: none;
+	color: black;
+	background-color: transparent;
+	border: 1px solid black;
+}
+
+.btn {
+	height: 60%;
+	width: 10%;
+	font-size: 18px;
+	margin-left: 1em;
+	border-radius: 10px;
+	background-color: #010536;
+	color: yellow;
+	cursor: pointer;
+}
+
+
+.allComments {
+	min-height: 5vh;
+	width: 60vw;
+	margin:0em 0em 1em 1.1em;
+	color: yellow;
+	background-color: transparent;
+}
+
+.mainComentBox {
+	min-height: 9vh;
+	width: 70%;
+	color: black;
+	background-color: transparent;
+	margin: 12px 10px;
+	border: 2px solid #010536;
+	box-shadow: 0px 3px 15px #010536;
+	border-radius: 5px;
+}
+
+.imgAndName {
+	height: 4.5vh;
+	width: 60%;
+	display: flex;
+	padding-top: 6px;
+}
+
+.userName {
+	height: 100%;
+	min-width: 40%;
+	padding: 0 5px 0 5px;
+	display: flex;
+	align-items: center;
+	font-family: "Ga Maamli", sans-serif;
+}
+
+.userImg {
+	height: 100%;
+	width: 15%;
+	border-radius: 50%;
+	margin: 0 0% 0 3%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.userImg img {
+	height: 100%;
+	width: 50%;
+	border-radius: 50%;
+}
+
+.date {
+	height: 100%;
+	width: 30%;
+	display: flex;
+	align-items: center;
+	padding: 0 5px 0 5px;
+	font-family: "Ga Maamli", sans-serif;
+	color: #5c5b5b;
+	font-size: 14px;
+	letter-spacing: 0.1em;
+}
+
+.comment {
+	min-height: 4vh;
+	width: 90%;
+	padding: 3px 3px;
+	display: flex;
+	align-items: center;
+	padding-left: 3.5em;
+	font-size: 20px;
+}
+.updateAndDelete{
+    height: 100%;
+	width: 6vw;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.update , .delete{
+    font-size: 18px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+.delete > a{
+	text-decoration: none;
+	color: black;
+}
+footer {
+	height: 17.4vh;
+	width: 100%;
+	background-color: #010536;
+	margin: auto;
+}
